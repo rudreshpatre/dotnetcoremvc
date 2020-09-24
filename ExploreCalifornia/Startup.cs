@@ -28,6 +28,14 @@ namespace ExploreCalifornia
 
             app.UseRouting();
 
+            app.Run(async (context) => {
+                await context.Response.WriteAsync("Hello Rudresh RunOne!");
+            });
+
+            app.Run(async(context)=>{
+                await context.Response.WriteAsync("Hello Rudresh Run!");
+            });
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context =>
