@@ -26,24 +26,30 @@ namespace ExploreCalifornia
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();           
+            //app.UseRouting();           
 
-            app.UseEndpoints(endpoints =>
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapGet("/", async context =>
+            //    {
+            //        await context.Response.WriteAsync("Hello Rudresh!");
+            //    });
+            //});
+
+            //app.Use(async (context, next) => {
+            //    await context.Response.WriteAsync("Hello Rudresh Use! ");
+            //    await next();
+            //});
+
+            app.UseFileServer();
+            //app.UseStaticFiles();
+
+            app.Run(async (context) =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello Rudresh!");
-                });
-            });
-
-            app.Use(async (context, next) => {
-                await context.Response.WriteAsync("Hello Rudresh Use! ");
-                await next();
-            });
-
-            app.Run(async (context) => {
                 await context.Response.WriteAsync("Hello Rudresh Run!");
             });
+
+            
         }
     }
 }
