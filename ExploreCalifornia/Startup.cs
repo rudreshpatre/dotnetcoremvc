@@ -26,15 +26,7 @@ namespace ExploreCalifornia
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
-
-            app.Run(async (context) => {
-                await context.Response.WriteAsync("Hello Rudresh RunOne!");
-            });
-
-            app.Run(async(context)=>{
-                await context.Response.WriteAsync("Hello Rudresh Run!");
-            });
+            app.UseRouting();           
 
             app.UseEndpoints(endpoints =>
             {
@@ -42,6 +34,15 @@ namespace ExploreCalifornia
                 {
                     await context.Response.WriteAsync("Hello Rudresh!");
                 });
+            });
+
+            app.Use(async (context, next) => {
+                await context.Response.WriteAsync("Hello Rudresh Use! ");
+                await next();
+            });
+
+            app.Run(async (context) => {
+                await context.Response.WriteAsync("Hello Rudresh Run!");
             });
         }
     }
