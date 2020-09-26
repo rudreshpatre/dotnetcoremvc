@@ -12,5 +12,12 @@ namespace ExploreCalifornia.Controllers
         {
             return View();
         }
+
+        public IActionResult Post(int? id) 
+        { 
+            if (id == null)
+                return new ContentResult { Content = "Pass Id in correct format."};
+            return new ContentResult{Content = id.ToString() };
+        }
     }
 }
