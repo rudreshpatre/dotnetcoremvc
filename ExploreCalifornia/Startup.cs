@@ -27,6 +27,7 @@ namespace ExploreCalifornia
             services.AddTransient<FeatureToggles>(x=> new FeatureToggles {
                 DeveloperExceptions = configuration.GetValue<bool>("FeatureToggles:DeveloperExceptions")
             });
+            services.AddMvc(x=>x.EnableEndpointRouting=false);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +61,7 @@ namespace ExploreCalifornia
             app.UseFileServer();
             //app.UseStaticFiles();
 
+           
             app.Use(async (context, next) =>
             {
                 if (context.Request.Path.Value.Contains("invalid"))
@@ -67,14 +69,19 @@ namespace ExploreCalifornia
                     throw new Exception("ERROR");
                 }
                 await next();
+            });           
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute("Default",
+                    "{controller=Home}/{action=Index}/{id?}"
+                    );
             });
 
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("Hello Rudresh Run!");
             });
-
-
         }
     }
 }
