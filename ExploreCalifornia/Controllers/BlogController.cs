@@ -27,7 +27,23 @@ namespace ExploreCalifornia.Controllers
                 Body = "This is a great blog post."
             };
             return View(post);
-        }          
-            
+        }
+
+        [HttpGet]
+        public IActionResult Create() 
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Post post)
+        {
+            if(!ModelState.IsValid)
+                return View();
+            post.Author = User.Identity.Name;
+            post.Posted = DateTime.Now;
+            return View();
+        }
+
     }
 }
