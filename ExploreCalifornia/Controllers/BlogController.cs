@@ -18,6 +18,10 @@ namespace ExploreCalifornia.Controllers
         [Route("{year:min(2000)}/{month:range(1,12)}/{key}")]
         public IActionResult Post(int year,int month, string key) 
         {
+            ViewBag.Title = "My Blog Post";
+            ViewBag.Posted = DateTime.Now;
+            ViewBag.Title = "Rudresh Patre";
+            ViewBag.Title = "This is a great blog post.";
             return View();
         }
     }
