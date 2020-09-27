@@ -12,7 +12,7 @@ namespace ExploreCalifornia.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return new ContentResult {Content = "Blog View" };
         }
 
         [Route("{year:min(2000)}/{month:range(1,12)}/{key}")]
